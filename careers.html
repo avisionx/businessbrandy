@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Careers — Business Brandy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   EDIT GUIDE:
+   - Job openings: find "JOB OPENING #1" etc. and edit title, dept, location, type, description, requirements
+   - To ADD a job: copy a full .job-card block and paste it
+   - To REMOVE a job: delete the full .job-card block
+   - Google Form links: replace "YOUR_FORM_LINK_HERE" with your actual Google Form URL
+   - Company values: find "EDIT VALUES" section
+═══════════════════════════════════════ */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#EAEAEA;color:#233038;overflow-x:hidden}
+
+:root{
+  --orange:#E8591A;
+  --orange-dark:#C44510;
+  --orange-light:#F07040;
+  --teal:#075056;
+  --teal-light:#0A6E76;
+  --lime:#DFF245;
+  --slate:#233038;
+  --gray:#EAEAEA;
+  --white:#FFFFFF;
+  --border:rgba(7,80,86,0.12);
+}
+
+/* ── NAV ── */
+nav{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:0 6%;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:99;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{
+  width:36px;height:36px;background:var(--lime);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:20px;
+  font-weight:700;color:var(--teal);
+}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--teal)}
+.nav-sub{font-size:.65rem;font-weight:500;letter-spacing:1.5px;color:var(--orange);text-transform:uppercase;margin-top:1px}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-back{
+  background:var(--teal);color:#fff;
+  padding:.55rem 1.4rem;border-radius:50px;
+  font-size:.85rem;font-weight:500;text-decoration:none;
+  transition:background .2s;
+}
+.nav-back:hover{background:var(--teal-light)}
+
+/* ── HERO ── */
+.hero{
+  background:var(--slate);padding:7rem 6% 5rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'CAREERS';
+  position:absolute;font-family:'Playfair Display',serif;font-size:clamp(80px,18vw,220px);
+  font-weight:900;color:rgba(223,242,69,.04);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:700px}
+.eyebrow{
+  font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(223,242,69,.7);margin-bottom:1.2rem;display:block;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,7vw,80px);font-weight:700;
+  color:#fff;line-height:1.05;letter-spacing:-.5px;margin-bottom:1.2rem;
+}
+.hero h1 em{font-style:italic;color:var(--lime)}
+.hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.45);max-width:500px;line-height:1.85}
+
+/* ── SECTION COMMON ── */
+.sec{padding:6rem 6%}
+.sec-label{font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:1.1rem;display:block}
+.sec-h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;color:var(--slate);letter-spacing:-.3px}
+.sec-h2 em{font-style:italic;color:var(--orange)}
+
+/* ── VALUES ── */
+.values-sec{background:#fff}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem}
+.values-text p{font-size:.95rem;font-weight:300;color:rgba(35,48,56,.65);line-height:1.9;margin-top:1rem}
+.values-cards{display:flex;flex-direction:column;gap:.8rem}
+.val-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.2rem 1.4rem;background:var(--gray);border:1px solid var(--border);
+}
+.val-icon{
+  width:32px;height:32px;background:var(--teal);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;
+}
+.val-label{font-weight:600;font-size:13.5px;color:var(--slate);margin-bottom:.2rem}
+.val-desc{font-size:.78rem;color:rgba(35,48,56,.5);line-height:1.6}
+
+/* ── JOB LISTINGS ── */
+.jobs-sec{background:var(--gray)}
+.jobs-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.jobs-count{
+  font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(35,48,56,.4);
+}
+.job-filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.filter-btn{
+  font-size:.72rem;letter-spacing:1px;text-transform:uppercase;
+  padding:6px 14px;border:1px solid var(--border);background:transparent;
+  color:var(--slate);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* Job card */
+.job-card{
+  background:#fff;border:1px solid var(--border);
+  margin-bottom:2px;overflow:hidden;transition:border-color .2s;
+}
+.job-card:hover{border-color:var(--orange)}
+.job-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.8rem 2rem;cursor:pointer;gap:2rem;
+}
+.job-left{display:flex;align-items:center;gap:1.2rem;flex:1;min-width:0}
+.job-dept{
+  font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal);background:rgba(7,80,86,.08);padding:4px 10px;flex-shrink:0;
+}
+.job-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--slate)}
+.job-meta{display:flex;gap:1rem;flex-shrink:0;flex-wrap:wrap}
+.job-meta span{font-size:.78rem;color:rgba(35,48,56,.45)}
+.job-meta span::before{content:'· ';color:var(--border)}
+.job-meta span:first-child::before{display:none}
+.apply-btn{
+  background:var(--orange);color:#fff;
+  padding:9px 20px;font-size:.72rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  border:none;cursor:pointer;font-family:'DM Sans',sans-serif;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+  transition:background .2s;text-decoration:none;display:inline-block;white-space:nowrap;
+}
+.apply-btn:hover{background:var(--orange-dark)}
+.job-body{display:none;padding:0 2rem 2rem;border-top:1px solid var(--border)}
+.job-body.open{display:block}
+.job-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem}
+.job-section-title{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem}
+.job-list{list-style:none}
+.job-list li{font-size:.83rem;color:rgba(35,48,56,.65);font-weight:300;padding-left:1rem;position:relative;line-height:1.7;margin-bottom:.3rem}
+.job-list li::before{content:'—';position:absolute;left:0;color:var(--orange);font-size:.8em}
+.job-desc{font-size:.85rem;color:rgba(35,48,56,.6);line-height:1.8;margin-bottom:1.2rem;font-weight:300}
+
+/* ── SPONTANEOUS ── */
+.spontaneous{
+  margin-top:2rem;padding:3rem;background:var(--teal);
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;
+}
+.spontaneous h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+.spontaneous p{font-size:.83rem;color:rgba(255,255,255,.4);line-height:1.7}
+.btn-lime{
+  background:var(--lime);color:var(--slate);
+  padding:13px 26px;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  border:none;cursor:pointer;text-decoration:none;display:inline-block;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  transition:background .2s;flex-shrink:0;
+}
+.btn-lime:hover{background:#c8da2a}
+
+/* ── FOOTER ── */
+footer{background:var(--slate);padding:3rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.f-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff}
+.f-brand span{color:var(--orange)}
+.f-tagline{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(223,242,69,.45);margin-top:.3rem}
+.f-links{display:flex;gap:2rem}
+.f-links a{font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--lime)}
+.f-copy{font-size:.75rem;color:rgba(255,255,255,.2)}
+
+/* REVEAL */
+[data-r]{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+[data-r].on{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .values-grid{grid-template-columns:1fr}
+  .job-cols{grid-template-columns:1fr}
+  .job-header{flex-direction:column;align-items:flex-start}
+  .f-links{flex-wrap:wrap;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo" onclick="showPage('home');return false">
+   <img src="logo.png" style="width:180px;">
+  </a>
+  <a href="/" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Join the Team</span>
+    <h1>Work where brands<br/>go <em>higher.</em></h1>
+    <p class="hero-sub">We're building a team of sharp strategists, bold creatives, and obsessive performers. If you want to work on brands that matter — you're in the right place.</p>
+  </div>
+</div>
+
+<!-- VALUES SECTION -->
+<!-- ═══ EDIT VALUES BELOW ═══ -->
+<section class="sec values-sec">
+  <div class="values-grid" data-r>
+    <div class="values-text">
+      <span class="sec-label">Why Business Brandy</span>
+      <h2 class="sec-h2">Where craft meets <em>ambition.</em></h2>
+      <p>We're a small, high-performance team that moves fast, thinks deep, and cares about the work. Real ownership, real impact, front-row seat to building something iconic in Pune.</p>
+    </div>
+    <div class="values-cards">
+      <!-- EDIT each val-card: icon emoji, label, description -->
+      <div class="val-card">
+        <div class="val-icon">🔥</div>
+        <div><p class="val-label">High Ownership</p><p class="val-desc">No hand-holding. You own your work from strategy to execution.</p></div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">📈</div>
+        <div><p class="val-label">Fast Growth</p><p class="val-desc">We grow fast and you grow with us — in skills, title, and pay.</p></div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🎯</div>
+        <div><p class="val-label">Real Impact</p><p class="val-desc">Your work ships. Your ideas are heard. Your results celebrated.</p></div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon">🥃</div>
+        <div><p class="val-label">Bold Culture</p><p class="val-desc">We work hard, celebrate wins, and never settle for average.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOB LISTINGS -->
+<section class="sec jobs-sec">
+  <div class="jobs-header">
+    <div>
+      <span class="sec-label">Open Positions</span>
+      <h2 class="sec-h2" style="font-size:clamp(1.8rem,3vw,2.8rem)">Current <em>Openings</em></h2>
+    </div>
+    <div>
+      <div class="jobs-count" id="jobs-count">3 OPEN ROLES</div>
+      <div class="job-filters" style="margin-top:.6rem">
+        <button class="filter-btn active" onclick="filterJobs('all',this)">All</button>
+        <button class="filter-btn" onclick="filterJobs('marketing',this)">Marketing</button>
+        <button class="filter-btn" onclick="filterJobs('creative',this)">Creative</button>
+        <button class="filter-btn" onclick="filterJobs('strategy',this)">Strategy</button>
+        <button class="filter-btn" onclick="filterJobs('sales',this)">Sales</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="job-listings">
+
+    <!-- ═══════════════════════════════════════
+         JOB OPENING #1 — EDIT EVERYTHING HERE
+         dept options: marketing / creative / strategy / tech
+    ════════════════════════════════════════ -->
+    <div class="job-card" data-dept="marketing">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div class="job-left">
+          <span class="job-dept">Marketing</span><!-- EDIT dept label -->
+          <span class="job-title">Performance Marketing Manager</span><!-- EDIT title -->
+        </div>
+        <div class="job-meta">
+          <span>Full-time</span><!-- EDIT type -->
+          <span>Pune </span><!-- EDIT location -->
+          <span>4–5 yrs exp</span><!-- EDIT experience -->
+        </div>
+        <a href="https://forms.gle/1Upe4nkPJgVXzp7XA" target="_blank" class="apply-btn" onclick="event.stopPropagation()">Apply Now ↗</a>
+      </div>
+      <div class="job-body">
+        <p class="job-desc">
+          <!-- EDIT job description paragraph -->
+          We're looking for a data-driven performance marketer to own paid campaigns across Meta, Google, and YouTube. You'll work closely with our creative and strategy teams to drive measurable growth for our clients.
+        </p>
+        <div class="job-cols">
+          <div>
+            <p class="job-section-title">What You'll Do</p>
+            <ul class="job-list">
+              <!-- EDIT each responsibility -->
+              <li>Plan and manage paid campaigns across Meta, Google,and YouTube</li>
+              <li>Own ROAS targets and media budgets for multiple client accounts</li>
+              <li>Build and test creative briefs to improve ad performance</li>
+              <li>Deliver weekly performance reports with actionable insights</li>
+              <li>Collaborate with the creative team on scroll-stopping content</li>
+			  <li>Have worked with D2C, Real estate or Hospitality brands </li>
+            </ul>
+          </div>
+          <div>
+            <p class="job-section-title">What We're Looking For</p>
+            <ul class="job-list">
+              <!-- EDIT each requirement -->
+              <li>4-5 years of hands-on paid media experience (agency preferred)</li>
+              <li>Track record managing atleast ₹20L+ monthly ad budgets</li>
+              <li>Strong analytical mindset — you live in dashboards</li>
+              <li>Experience with Meta Ads Manager, Google Ads, Jio Ads</li>
+              <li>Desire to get clients higher, not just campaigns out the door</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         JOB OPENING #2 — EDIT EVERYTHING HERE
+    ════════════════════════════════════════ -->
+   <!-- <div class="job-card" data-dept="creative">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div class="job-left">
+          <span class="job-dept">Creative</span>
+          <span class="job-title">Brand Designer & Art Director</span>
+        </div>
+        <div class="job-meta">
+          <span>Full-time</span>
+          <span>Pune</span>
+          <span>1–3 yrs exp</span>
+        </div>
+        <a href="YOUR_FORM_LINK_HERE" target="_blank" class="apply-btn" onclick="event.stopPropagation()">Apply Now ↗</a>
+      </div>
+      <div class="job-body">
+        <p class="job-desc">
+          We need a visually fearless designer who can craft brand identities and campaign creatives that stop people mid-scroll. You'll art-direct shoots, build motion, and work directly with founders.
+        </p>
+        <div class="job-cols">
+          <div>
+            <p class="job-section-title">What You'll Do</p>
+            <ul class="job-list">
+              <li>Design brand identities, ad creatives, and social content</li>
+              <li>Art-direct photo and video shoots for client campaigns</li>
+              <li>Create motion graphics and short-form video edits</li>
+              <li>Maintain brand consistency across all touchpoints</li>
+              <li>Present creative concepts to clients with confidence</li>
+            </ul>
+          </div>
+          <div>
+            <p class="job-section-title">What We're Looking For</p>
+            <ul class="job-list">
+              <li>Strong portfolio showing brand + digital design work</li>
+              <li>Proficiency in Figma, Adobe Suite, and After Effects</li>
+              <li>Sharp eye for typography, layout, and visual storytelling</li>
+              <li>Understanding of performance creative (what converts)</li>
+              <li>Ability to work fast without compromising craft</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- ═══════════════════════════════════════
+         JOB OPENING #3 — EDIT EVERYTHING HERE
+    ════════════════════════════════════════ -->
+  <!--  <div class="job-card" data-dept="strategy">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div class="job-left">
+          <span class="job-dept">Strategy</span>
+          <span class="job-title">Brand Strategist</span>
+        </div>
+        <div class="job-meta">
+          <span>Full-time</span>
+          <span>Pune / Hybrid</span>
+          <span>3–5 yrs exp</span>
+        </div>
+        <a href="YOUR_FORM_LINK_HERE" target="_blank" class="apply-btn" onclick="event.stopPropagation()">Apply Now ↗</a>
+      </div>
+      <div class="job-body">
+        <p class="job-desc">
+          As our Brand Strategist you'll work directly with founders and CMOs to define positioning, architecture, and messaging that makes brands worth remembering.
+        </p>
+        <div class="job-cols">
+          <div>
+            <p class="job-section-title">What You'll Do</p>
+            <ul class="job-list">
+              <li>Lead brand audits, positioning workshops, and strategy decks</li>
+              <li>Define brand architecture, messaging, and tone of voice</li>
+              <li>Work directly with founders and CMOs as a trusted partner</li>
+              <li>Translate market insights into actionable brand strategy</li>
+              <li>Collaborate with creative and performance teams</li>
+            </ul>
+          </div>
+          <div>
+            <p class="job-section-title">What We're Looking For</p>
+            <ul class="job-list">
+              <li>3–5 years in brand strategy, consulting, or agency roles</li>
+              <li>Experience building brand positioning from scratch</li>
+              <li>Excellent written and verbal communication skills</li>
+              <li>Comfort with ambiguity and fast-moving environments</li>
+              <li>Genuine curiosity about markets, consumers, and culture</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- ═══════════════════════════════════════
+         JOB OPENING #4 — EDIT EVERYTHING HERE
+    ════════════════════════════════════════ -->
+    <div class="job-card" data-dept="marketing">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div class="job-left">
+          <span class="job-dept">Marketing</span>
+          <span class="job-title">Ad Script/Content Writer</span>
+        </div>
+        <div class="job-meta">
+          <span>Full-time</span>
+          <span>Pune / Remote</span>
+          <span>2–3 yrs exp</span>
+        </div>
+        <a href="https://forms.gle/1Upe4nkPJgVXzp7XA" target="_blank" class="apply-btn" onclick="event.stopPropagation()">Apply Now ↗</a>
+      </div>
+      <div class="job-body">
+        <p class="job-desc">
+          We’re not looking for “writers.”
+We’re looking for someone who understands attention.
+
+Someone who knows why people stop scrolling.
+Someone who can turn boring brands into viral content.
+Someone who thinks in hooks, trends, reels, memes, storytelling, and culture.
+        </p>
+        <div class="job-cols">
+          <div>
+            <p class="job-section-title">What You'll Do</p>
+            <ul class="job-list">
+              <li>Write viral ad copies for Instagram, Meta Ads, YouTube, and short-form content</li>
+              <li>Create scripts for reels, ads, UGC videos, founders’ videos,celebs and campaigns</li>
+              <li>Work closely with designers, editors, and performance marketers</li>
+              <li>Turn boring products into content people actually want to watch</li>
+              <li>Help brands sound human, relatable, and internet-native</li>
+            </ul>
+          </div>
+          <div>
+            <p class="job-section-title">What We're Looking For</p>
+            <ul class="job-list">
+              <li>Lives on Instagram, TikTok, YouTube Shorts, and knows internet culture</li>
+              <li>Can adapt tone for different brands</li>
+              <li>Knows how to write for attention, emotion, and conversions hooks</li>
+              <li>Understands trends, memes, storytelling, and audience behavior</li>
+              <li>Has a portfolio, sample work, meme page, content page, or scripts to show</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         JOB OPENING #5 — EDIT EVERYTHING HERE
+    ════════════════════════════════════════ -->
+    <div class="job-card" data-dept="sales">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div class="job-left">
+          <span class="job-dept">Sales</span>
+          <span class="job-title">Business Development Manager</span>
+        </div>
+        <div class="job-meta">
+          <span>Full-time</span>
+          <span>Pune / Travel as per client need</span>
+          <span>3-4 yrs exp</span>
+        </div>
+        <a href="https://forms.gle/1Upe4nkPJgVXzp7XA" target="_blank" class="apply-btn" onclick="event.stopPropagation()">Apply Now ↗</a>
+      </div>
+      <div class="job-body">
+        <p class="job-desc">
+          We are looking for a Business Development Manager who can actively generate and close clients from the India and internation markets for our digital marketing services.
+        </p>
+        <div class="job-cols">
+          <div>
+            <p class="job-section-title">What You'll Do</p>
+            <ul class="job-list">
+              <li>Identify and acquire new clients from the India and International markets</li>
+              <li>Generate leads through LinkedIn outreach, cold emailing, networking, referrals, Upwork, and inbound channels</li>
+              <li>Maintain CRM, pipeline tracking, and sales reports</li>
+              <li>Achieve monthly sales and revenue targets</li>
+              <li>Manage the complete sales cycle from lead generation to deal closure</li>
+            </ul>
+          </div>
+          <div>
+            <p class="job-section-title">What We're Looking For</p>
+            <ul class="job-list">
+              <li>3–6 years of experience in business development or international sales</li>
+              <li>Familiarity with CRM tools, LinkedIn Sales Navigator, and email outreach</li>
+              <li>Understanding of digital marketing services and pricing models</li>
+              <li>Strong communication and presentation skills</li>
+              <li>Ability to conduct sales calls with international clients confidently</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end job-listings -->
+
+  <!-- SPONTANEOUS APPLICATION -->
+  <div class="spontaneous">
+    <div>
+      <h3>Don't see your role?</h3>
+      <p>We're always looking for exceptional talent. Send your portfolio and tell us why you belong at Business Brandy.</p>
+    </div>
+    <!-- EDIT: replace YOUR_SPONTANEOUS_FORM_LINK_HERE with your Google Form URL -->
+    <a href="https://forms.gle/1Upe4nkPJgVXzp7XA" target="_blank" class="btn-lime">Send Spontaneous Application ↗</a>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-brand">Business <span>Brandy</span></div>
+    <div class="f-tagline">Gets You Higher</div>
+  </div>
+  <div class="f-links">
+    <a href="/">Home</a>
+    <a href="/#services">Services</a>
+    <a href="/#process">Process</a>
+    <a href="/#cta">Contact</a>
+  </div>
+  <p class="f-copy">© 2026 Business Brandy. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleJob(header){
+  const body=header.nextElementSibling
+  body.classList.toggle('open')
+  header.style.background=body.classList.contains('open')?'rgba(7,80,86,0.03)':''
+}
+function filterJobs(dept,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  const cards=document.querySelectorAll('.job-card')
+  let count=0
+  cards.forEach(c=>{
+    const show=dept==='all'||c.dataset.dept===dept
+    c.style.display=show?'block':'none'
+    if(show)count++
+  })
+  document.getElementById('jobs-count').textContent=count+' OPEN ROLE'+(count!==1?'S':'')
+}
+const obs=new IntersectionObserver(e=>{e.forEach(n=>{if(n.isIntersecting)n.target.classList.add('on')})},{threshold:.1})
+document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el))
+</script>
+</body>
+</html>
